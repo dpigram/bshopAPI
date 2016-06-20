@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from baseAPI.serializers import AppointmentsSerializer, StylesSerializer, ShopSerializer, UserSerializer, GroupSerializer
 from baseAPI.models import Shops, Styles, Appointments
+from django.contrib.auth import authenticate
+from django.http import JsonResponse
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -24,3 +28,21 @@ class StylesViewSet(viewsets.ModelViewSet):
 class AppointmentsViewSet(viewsets.ModelViewSet):
 	queryset = Appointments.objects.all()
 	serializer_class = AppointmentsSerializer
+
+@api_view(['POST'])
+def LoginViewSet(request):
+	user = authenticate(username=request.POST['username'], password=request.POST['password'])
+	serializer_context = {
+		'request': request,
+	}
+	data = UserSerializer(instance=user, context=serializer_context)
+	
+	if user is not None:
+		if user.is_active:
+			return Response({'status': 'success', 'data': data.data})
+		else:
+			return Response({'status' : 'failure', 'message' : 'This account has been disabled'})
+	else:
+		# the authentication system was unable to verify the username and password
+		return JsonResponse({'status': 'failure', 'message': 'The username and password were incorrect'})
+	

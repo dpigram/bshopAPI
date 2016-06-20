@@ -28,5 +28,5 @@ router.register(r'styles', views.StylesViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-
+    url(r'^checkit/', views.LoginViewSet, name="check_creds"),
 ]
