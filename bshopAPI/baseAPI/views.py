@@ -45,4 +45,17 @@ def LoginViewSet(request):
 	else:
 		# the authentication system was unable to verify the username and password
 		return JsonResponse({'status': 'failure', 'message': 'The username and password were incorrect'})
+
+
+@api_view(['POST'])
+def barberAppointments(request):
+	print(request.POST['barber_id'])
+	appointments = Appointments.objects.filter(barber=request.POST['barber_id'])
+	print(appointments)
+	serializer_context = {
+		'request': request,
+	}
+
+	data = AppointmentsSerializer(appointments, context=serializer_context, many=True)
+	return JsonResponse({'data': data.data})
 	

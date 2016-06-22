@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^user/auth', views.LoginViewSet, name="check_creds"),
+    url(r'^barber/appointments', views.barberAppointments)
 ]

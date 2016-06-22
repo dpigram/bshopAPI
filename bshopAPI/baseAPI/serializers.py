@@ -2,10 +2,10 @@ from django.contrib.auth.models import User, Group
 from baseAPI.models import Shops, Styles, Appointments
 from rest_framework import serializers
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('url', 'username', 'email', 'groups')
+		fields = ('url','id', 'username', 'email', 'groups')
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -22,7 +22,7 @@ class StylesSerializer(serializers.HyperlinkedModelSerializer):
 		model = Styles
 		field = ('name')
 
-class AppointmentsSerializer(serializers.HyperlinkedModelSerializer):
+class AppointmentsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Appointments
 		field = ('date', 'customer', 'style')
