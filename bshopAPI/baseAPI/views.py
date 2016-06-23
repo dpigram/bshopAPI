@@ -58,4 +58,11 @@ def barberAppointments(request):
 
 	data = AppointmentsSerializer(appointments, context=serializer_context, many=True)
 	return JsonResponse({'data': data.data})
+
+@api_view(['POST'])
+def customerAppointments(request):
+	appointments = Appointments.objects.filter(customer=request.POST['customer_id'])
+	serializer_context = {'request': request,}
+	data = AppointmentsSerializer(appointments, context=serializer_context, many=True)
+	return JsonResponse({'data': data.data})
 	
