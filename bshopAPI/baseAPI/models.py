@@ -11,6 +11,7 @@ class Shops(models.Model):
 
 class Styles(models.Model):
 	name = models.CharField(max_length=100)
+	# price = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=True);
 
 	def __str__(self):
 		return self.name
@@ -28,7 +29,29 @@ class Profile(models.Model):
 	middleName = models.CharField(max_length=100, default=None, null=True)
 	nickName = models.CharField(max_length=100, default=None, null=True)
 	bio = models.TextField(max_length=100, default=None, null=True)
-	
+	owner = models.ForeignKey(User)
+
+class Photos(models.Model):
+	caption = models.TextField(default=None)
+	owner = models.ForeignKey(User)
+	daps = models.IntegerField(default=0)
+
+class Comments(models.Model):
+	text = models.TextField(default=None)
+	timeStamp = models.DateTimeField(auto_now_add=True)
+	daps = models.IntegerField(default=0)
+	owner = models.ForeignKey(User)
+
+class Albums(models.Model):
+	title = models.TextField(max_length=100, default="Unknown Album")
+	timeStamp = models.DateTimeField(auto_now_add=True)
+	daps = models.IntegerField(default=0)
+
+
+
+
+
+
 
 
 
