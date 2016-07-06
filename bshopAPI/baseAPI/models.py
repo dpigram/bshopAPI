@@ -22,6 +22,14 @@ class Appointments(models.Model):
 	style = models.OneToOneField('Styles')
 	barber = models.ForeignKey(User, related_name="barber_appointment")
 
+class Profile(models.Model):
+	firstName = models.CharField(max_length=100, default=None)
+	lastName = models.CharField(max_length=100, default=None)
+	middleName = models.CharField(max_length=100, default=None, null=True)
+	nickName = models.CharField(max_length=100, default=None, null=True)
+	bio = models.TextField(max_length=100, default=None, null=True)
+	
+
 
 
 
