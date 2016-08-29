@@ -1,0 +1,4 @@
+bshopAPI/*.sqlite3
+bshopAPI/baseAPI/migrations/*.py
+.DS_Store
+
