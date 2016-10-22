@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^user/auth', views.LoginViewSet, name="check_creds"),
     url(r'^barber/appointments', views.barberAppointments),
-    url(r'^customer/appointments', views.customerAppointments)
+    url(r'^customer/appointments', views.customerAppointments),
+    url(r'^docs/', include('rest_framework_docs.urls')),
 ]
