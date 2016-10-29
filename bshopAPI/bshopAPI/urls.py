@@ -24,6 +24,7 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'shops', views.ShopsViewSet)
 router.register(r'appointments', views.AppointmentsViewSet)
 router.register(r'styles', views.StylesViewSet)
+router.register(r'favorites_shops', views.FavoriteShopsViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
