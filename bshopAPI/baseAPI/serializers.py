@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from baseAPI.models import Shops, Styles, Appointments
+from baseAPI.models import Shops, Styles, Appointments, FavoriteShops
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,3 +28,7 @@ class AppointmentsSerializer(serializers.ModelSerializer):
 		field = ('date', 'customer', 'style')
 
 
+class FavoriteShopsSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = FavoriteShops
+		field = ('url', 'user', 'shop', )

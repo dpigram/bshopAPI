@@ -9,6 +9,9 @@ class Shops(models.Model):
 	address = models.CharField(max_length=100, default=None)
 	owner = models.ForeignKey(User)
 
+	def __str__(self):
+		return self.name
+
 class Styles(models.Model):
 	name = models.CharField(max_length=100)
 	# price = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=True);
@@ -46,6 +49,26 @@ class Albums(models.Model):
 	title = models.TextField(max_length=100, default="Unknown Album")
 	timeStamp = models.DateTimeField(auto_now_add=True)
 	daps = models.IntegerField(default=0)
+
+class FavoriteShops(models.Model):
+	owner = models.ForeignKey(User)
+	shop = models.ForeignKey(Shops)
+
+class FavoritBarbers(models.Model):
+	user = models.ForeignKey(User)
+	barber = models.ForeignKey("Barbers")
+
+class Barbers(models.Model):
+	firstName = models.CharField(max_length=120, default=None)
+	lastName = models.CharField(max_length=120, default=None)
+	middleName = models.CharField(max_length=120, default=None)
+	nickName = models.CharField(max_length=120, default=None)
+	bio = models.TextField(max_length=200, default=None, null=True)
+
+	def __str__(self):
+		return self.firstName + " " + self.lastName
+
+
 
 
 
