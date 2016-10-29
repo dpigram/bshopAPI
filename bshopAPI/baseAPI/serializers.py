@@ -31,4 +31,4 @@ class AppointmentsSerializer(serializers.ModelSerializer):
 class FavoriteShopsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = FavoriteShops
-		fields = ('url', 'user', 'shop', )
+		fields = ('url', 'user', 'shop')
