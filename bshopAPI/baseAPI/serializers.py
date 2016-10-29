@@ -15,20 +15,20 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ShopSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Shops
-		field = ('name', 'address')
+		fields = ('name', 'address')
 
 class StylesSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Styles
-		field = ('name')
+		fields = ('name')
 
 class AppointmentsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Appointments
-		field = ('date', 'customer', 'style')
+		fields = ('date', 'customer', 'style')
 
 
 class FavoriteShopsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = FavoriteShops
-		field = ('url', 'user', 'shop', )
+		fields = ('url', 'user', 'shop', )
