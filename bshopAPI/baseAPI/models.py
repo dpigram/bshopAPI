@@ -8,7 +8,6 @@ class Shops(models.Model):
 	name = models.CharField(max_length=100, default=None)
 	address = models.CharField(max_length=100, default=None)
 	owner = models.ForeignKey(User)
-
 	def __str__(self):
 		return self.name
 
@@ -33,6 +32,7 @@ class Profile(models.Model):
 	nickName = models.CharField(max_length=100, default=None, null=True)
 	bio = models.TextField(max_length=100, default=None, null=True)
 	owner = models.ForeignKey(User)
+	favoriteShops = models.ManyToManyField(Shops)
 
 class Photos(models.Model):
 	caption = models.TextField(default=None)

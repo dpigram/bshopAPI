@@ -25,6 +25,7 @@ router.register(r'shops', views.ShopsViewSet)
 router.register(r'appointments', views.AppointmentsViewSet)
 router.register(r'styles', views.StylesViewSet)
 router.register(r'favorites_shops', views.FavoriteShopsViewSet)
+router.register(r'profiles', views.ProfilesViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^barber/appointments', views.barberAppointments),
     url(r'^customer/appointments', views.customerAppointments),
     url(r'^docs/', include('rest_framework_docs.urls')),
+    url(r'^user/profile/(?P<userid>\d)', views.getUserProfile)
 ]

@@ -3,8 +3,8 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from baseAPI.serializers import AppointmentsSerializer, StylesSerializer, ShopSerializer, UserSerializer, GroupSerializer, FavoriteShopsSerializer
-from baseAPI.models import Shops, Styles, Appointments, FavoriteShops
+from baseAPI.serializers import AppointmentsSerializer, ProfilesSerializer, StylesSerializer, ShopSerializer, UserSerializer, GroupSerializer, FavoriteShopsSerializer
+from baseAPI.models import Shops, Styles, Appointments, FavoriteShops, Profile
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 # Create your views here.
@@ -32,6 +32,10 @@ class AppointmentsViewSet(viewsets.ModelViewSet):
 class FavoriteShopsViewSet(viewsets.ModelViewSet):
 	queryset = FavoriteShops.objects.all()
 	serializer_class = FavoriteShopsSerializer
+
+class ProfilesViewSet(viewsets.ModelViewSet):
+	queryset = Profile.objects.all()
+	serializer_class = ProfilesSerializer
 
 @api_view(['POST'])
 def LoginViewSet(request):
@@ -70,4 +74,12 @@ def customerAppointments(request):
 	data = AppointmentsSerializer(appointments, context=serializer_context, many=True)
 	return JsonResponse({'data': data.data})
 
-	
+
+
+def getUserProfile(request, userid):
+	# user = User.objects.get(pk=userid)
+	# print(user)
+	profile = Profile.objects.get(owner=userid)
+	serializer_context = {'request': request,}
+	data = ProfilesSerializer(profile, context=serializer_context, many=False)
+	return JsonResponse({'data': data.data})
