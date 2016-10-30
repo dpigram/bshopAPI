@@ -20,7 +20,7 @@ class ShopSerializer(serializers.HyperlinkedModelSerializer):
 class StylesSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Styles
-		fields = ('name')
+		fields = ('name',)
 
 class AppointmentsSerializer(serializers.ModelSerializer):
 	class Meta:
