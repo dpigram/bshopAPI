@@ -55,7 +55,7 @@ class FavoriteShops(models.Model):
 	shop = models.ForeignKey(Shops)
 
 class FavoritBarbers(models.Model):
-	user = models.ForeignKey(User)
+	owner = models.ForeignKey(User)
 	barber = models.ForeignKey("Barbers")
 
 class Barbers(models.Model):
