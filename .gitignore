@@ -3,3 +3,4 @@ bshopAPI/baseAPI/migrations/*.py
 bshopAPI/baseAPI/migrations/*.pyc
 .DS_Store
 bshopAPI/bshopAPI/settings.py
+bshopAPI/baseAPI/*.pyc
