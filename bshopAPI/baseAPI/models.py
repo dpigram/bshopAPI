@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 # Create your models here.
 
 class Shops(models.Model):
@@ -23,7 +24,7 @@ class Appointments(models.Model):
 	date = models.DateTimeField()
 	customer = models.ForeignKey(User, related_name="customer_appointment")
 	style = models.OneToOneField('Styles')
-	barber = models.ForeignKey(User, related_name="barber_appointment")
+	barber = models.ForeignKey('Barber', related_name="barber_appointment")
 
 class Profile(models.Model):
 	firstName = models.CharField(max_length=100, default=None)
@@ -54,16 +55,17 @@ class FavoriteShops(models.Model):
 	owner = models.ForeignKey(User)
 	shop = models.ForeignKey(Shops)
 
-class FavoritBarbers(models.Model):
+class FavoriteBarbers(models.Model):
 	owner = models.ForeignKey(User)
-	barber = models.ForeignKey("Barbers")
+	barber = models.ForeignKey("Barber")
 
-class Barbers(models.Model):
+class Barber(models.Model):
 	firstName = models.CharField(max_length=120, default=None)
 	lastName = models.CharField(max_length=120, default=None)
-	middleName = models.CharField(max_length=120, default=None)
+	middleName = models.CharField(max_length=120, default=None, null=True)
 	nickName = models.CharField(max_length=120, default=None)
 	bio = models.TextField(max_length=200, default=None, null=True)
+	user = models.ForeignKey(User)
 
 	def __str__(self):
 		return self.firstName + " " + self.lastName

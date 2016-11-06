@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from baseAPI.models import Profile, Shops, Styles, Appointments, FavoriteShops
+from baseAPI.models import Barber, Profile, Shops, Styles, Appointments, FavoriteShops
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class StylesSerializer(serializers.HyperlinkedModelSerializer):
 class AppointmentsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Appointments
-		fields = ('date', 'customer', 'style')
+		fields = ('date', 'customer', 'style', 'barber')
 
 class FavoriteShopsSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -37,3 +37,8 @@ class ProfilesSerializer(serializers.ModelSerializer):
 		model = Profile
 		fields = ('url', 'firstName', 'lastName', 'middleName', 'nickName', 'bio', 'owner', 'favoriteShops')
 		
+class BarberSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Barber
+		fields = ('url', 'firstName', 'lastName', 'middleName', 'nickName', 'user')
+
