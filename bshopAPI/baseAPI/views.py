@@ -7,6 +7,7 @@ from baseAPI.serializers import BarberSerializer, AppointmentsSerializer, Profil
 from baseAPI.models import Barber, Shops, Styles, Appointments, FavoriteShops, Profile
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -85,3 +86,15 @@ def getUserProfile(request, userid):
 	serializer_context = {'request': request,}
 	data = ProfilesSerializer(profile, context=serializer_context, many=False)
 	return JsonResponse({'data': data.data})
+
+@api_view(['POST'])
+def getUserFavoriteShops(request, userid):
+	favorites = FavoriteShops.objects.filter(owner=userid)
+	serializer_context = {'request': request,}
+	data = FavoriteShopsSerializer(favorites, context=serializer_context, many=True)
+
+	if data is not None:
+		return JsonResponse({'data': data.data})
+	else:
+		return Response({'data': ''})
+	

@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^barber/appointments', views.barberAppointments),
     url(r'^customer/appointments', views.customerAppointments),
     url(r'^docs/', include('rest_framework_docs.urls')),
-    url(r'^user/profile/(?P<userid>\d)', views.getUserProfile)
+    url(r'^user/profile/(?P<userid>\d)', views.getUserProfile),
+    url(r'^user/favorite/shops/(?P<userid>\d)', views.getUserFavoriteShops)
 ]
